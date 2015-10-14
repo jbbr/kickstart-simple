@@ -1,7 +1,8 @@
+/* @flow */
 import Tasks from 'TodoApp/collections/Tasks';
 
 Meteor.methods({
-  addTask: function (text) {
+  addTask: function (text: string): void {
     // Make sure the user is logged in before inserting a task
     if (! Meteor.userId()) {
       throw new Meteor.Error('not-authorized');
@@ -14,7 +15,7 @@ Meteor.methods({
       username: Meteor.user().username
     });
   },
-  deleteTask: function (taskId) {
+  deleteTask: function (taskId: string): void {
     var task = Tasks.findOne(taskId);
     if (task.private && task.owner !== Meteor.userId()) {
       // If the task is private, make sure only the owner can delete it
@@ -23,7 +24,7 @@ Meteor.methods({
 
     Tasks.remove(taskId);
   },
-  setChecked: function (taskId, setChecked) {
+  setChecked: function (taskId: string, setChecked: boolean): void {
     var task = Tasks.findOne(taskId);
     if (task.private && task.owner !== Meteor.userId()) {
       // If the task is private, make sure only the owner can check it off
@@ -32,7 +33,7 @@ Meteor.methods({
 
     Tasks.update(taskId, { $set: { checked: setChecked} });
   },
-  setPrivate: function (taskId, setToPrivate) {
+  setPrivate: function (taskId: string, setToPrivate: boolean): void {
     var task = Tasks.findOne(taskId);
 
     // Make sure only the task owner can make a task private

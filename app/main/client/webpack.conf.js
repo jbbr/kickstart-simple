@@ -3,16 +3,13 @@ var webpack = require('webpack');
 var babelSettings = { stage: 0 };
 
 if (process.env.NODE_ENV !== 'production') {
-  babelSettings.plugins = ['react-transform'];
+  babelSettings.plugins = ['react-transform', 'typecheck'];
   babelSettings.extra = {
     'react-transform': {
       transforms: [{
         transform: 'react-transform-hmr',
         imports: ['react'],
         locals: ['module']
-      }, {
-        transform: 'react-transform-catch-errors',
-        imports: ['react', 'redbox-react']
       }]
       // redbox-react is breaking the line numbers :-(
       // you might want to disable it
