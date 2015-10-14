@@ -1,4 +1,4 @@
-import Tasks from '../collections/Tasks';
+import Tasks from '../collection';
 
 Meteor.methods({
   addTask: function (text) {

@@ -11,7 +11,10 @@ module.exports = {
     'blaze-to-react': 'BlazeToReact'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json', '.css', '.scss']
+    extensions: ['', '.js', '.jsx', '.json', '.css', '.scss'],
+    alias: {
+      src: path.join(__dirname, '../src'),
+    }
   },
   module: {
     loaders: [

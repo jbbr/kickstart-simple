@@ -1,17 +1,17 @@
 import { Component, PropTypes } from 'react';
 
-export default class TodoApp extends Component {
+export default class DefaultLayout extends Component {
   static propTypes = {
     children: PropTypes.any.isRequired
   }
 
   componentWillMount() {
-    require('./css/TodoApp.import.css');
+    require('./DefaultLayout.import.css');
   }
 
   render() {
     return (
-      <div>
+      <div className="container">
         {this.props.children}
       </div>
     );

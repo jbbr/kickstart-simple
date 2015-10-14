@@ -1,7 +1,7 @@
 // Methods for optimistic updates
-require('../server/todo-methods');
+import 'src/todos/server/methods';
 
-require('./routes');
+import 'src/routes';
 
 Accounts.ui.config({
   passwordSignupFields: 'USERNAME_ONLY'

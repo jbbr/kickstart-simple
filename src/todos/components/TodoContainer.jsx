@@ -2,13 +2,14 @@ import { Component } from 'react';
 import ReactMixin from 'react-mixin';
 import ReactMeteorData from 'react-meteor-data';
 
-import TodoHeader from './components/TodoHeader';
-import TodoList from './components/TodoList';
+import TodoHeader from './simple/TodoHeader';
+import TodoList from './simple/TodoList';
+import TodoForm from './simple/TodoForm';
 
-import Tasks from '../../collections/Tasks';
+import Tasks from '../collection';
 
 @ReactMixin.decorate(ReactMeteorData)
-export default class TodoMain extends Component {
+export default class TodoContainer extends Component {
 
   state = {
     hideCompleted: false
@@ -37,6 +38,11 @@ export default class TodoMain extends Component {
     this.setState({ hideCompleted: e.target.checked });
   }
 
+  addTask = (text) => {
+    // Insert a task into the collection
+    Meteor.call('addTask', text);
+  }
+
   render() {
     if (!this.data.tasks) {
       // loading
@@ -49,7 +55,9 @@ export default class TodoMain extends Component {
               incompleteCount={this.data.incompleteCount}
               hideCompleted={this.state.hideCompleted}
               toggleHideCompleted={this.handleToggleHideCompleted}
-          />
+          >
+            <TodoForm addTask={this.addTask}/>
+          </TodoHeader>
           <TodoList tasks={this.data.tasks} />
         </div>
     );

@@ -10,9 +10,6 @@ if (process.env.NODE_ENV !== 'production') {
         transform: 'react-transform-hmr',
         imports: ['react'],
         locals: ['module']
-      }, {
-        transform: 'react-transform-catch-errors',
-        imports: ['react', 'redbox-react']
       }]
       // redbox-react is breaking the line numbers :-(
       // you might want to disable it
@@ -31,7 +28,10 @@ module.exports = {
     'blaze-to-react': 'BlazeToReact'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json', '.css', '.scss']
+    extensions: ['', '.js', '.jsx', '.json', '.css', '.scss'],
+    alias: {
+      src: path.join(__dirname, '../src'),
+    }
   },
   module: {
     loaders: [
